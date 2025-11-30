@@ -4,3 +4,5 @@ The codes and the Solution to the exercises from the book hands On machine learn
 
 2. We will also need a way to replace URLs with the word "URL". SO we use urlextract library.
 
+3. The first transformer email_to_word_count converts the email object into word count and which can be used for the further processing.
+
