@@ -6,3 +6,7 @@ The codes and the Solution to the exercises from the book hands On machine learn
 
 3. The first transformer email_to_word_count converts the email object into word count and which can be used for the further processing.
 
+4. In the second Transformer the fit method will build the vocabulary of common words and transform method will use the vocabulary to convert word counts into the vectors.
+
+5. LogisticRegression model is used and Precision => 95.70% is acheived with recall => 93.68%.
+
