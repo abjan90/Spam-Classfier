@@ -1,12 +1,28 @@
 The codes and the Solution to the exercises from the book hands On machine learning
 
-1. Stemming bhaneko chahi different word which gives off same meaning lai chahi process garnu bhanda aghi same banauney. So , for eg => if we have word DO , DOING , DOES this have same meaning but if we don't use stemming the model will differentiate each word as different. So we use a natural language processing model called nltk and stem it.
+1. Stemming for Semantic Normalization
+Stemming reduces words to their root form to ensure semantic equivalence. For example, "do," "doing," and "does" share the same meaning but would be treated as distinct features without normalization. I implemented the NLTK Porter Stemmer to consolidate these variations, reducing feature dimensionality while preserving semantic information.
+2. URL Normalization
+Spam emails frequently contain numerous URLs that add noise to the feature space. Using the urlextract library, all URLs are identified and replaced with a standardized "URL" token. This approach captures the presence of hyperlinks without overwhelming the model with unique URL variations.
+3. Custom Transformer: email_to_word_count
+The first transformer in the pipeline converts raw email objects into structured word count dictionaries. This component handles:
 
-2. We will also need a way to replace URLs with the word "URL". SO we use urlextract library.
+Multipart MIME email parsing
+HTML-to-text conversion using BeautifulSoup
+Text normalization (lowercasing, URL replacement, number tokenization)
+Word stemming via NLTK Porter Stemmer
+Generation of Counter objects for efficient word frequency tracking
 
-3. The first transformer email_to_word_count converts the email object into word count and which can be used for the further processing.
+4. Custom Transformer: word_count_to_vector
+The second transformer converts word count dictionaries into numerical feature vectors:
 
-4. In the second Transformer the fit method will build the vocabulary of common words and transform method will use the vocabulary to convert word counts into the vectors.
+fit() method: Builds a vocabulary of the 1,000 most common words across the training corpus, implementing frequency capping (max count of 10 per word per email) to prevent spam repetition from dominating features
+transform() method: Converts word counts to sparse matrix representation using scipy's Compressed Sparse Row (CSR) format, mapping each word to its vocabulary index for efficient computation
 
-5. LogisticRegression model is used and Precision => 95.70% is acheived with recall => 93.68%.
+5. Model Performance
+A Logistic Regression classifier (liblinear solver) was trained on the transformed features, achieving:
 
+Precision: 95.74% - Minimizes false positives (legitimate emails marked as spam)
+Recall: 94.74% - Effectively captures the majority of spam emails
+
+These metrics demonstrate the effectiveness of custom feature engineering in text classification tasks.
