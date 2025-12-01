@@ -1,5 +1,3 @@
-The codes and the Solution to the exercises from the book hands On machine learning
-
 1. Stemming for Semantic Normalization
 Stemming reduces words to their root form to ensure semantic equivalence. For example, "do," "doing," and "does" share the same meaning but would be treated as distinct features without normalization. I implemented the NLTK Porter Stemmer to consolidate these variations, reducing feature dimensionality while preserving semantic information.
 2. URL Normalization
@@ -24,5 +22,3 @@ A Logistic Regression classifier (liblinear solver) was trained on the transform
 
 Precision: 95.74% - Minimizes false positives (legitimate emails marked as spam)
 Recall: 94.74% - Effectively captures the majority of spam emails
-
-These metrics demonstrate the effectiveness of custom feature engineering in text classification tasks.
